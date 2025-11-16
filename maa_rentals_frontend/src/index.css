@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+ body, #root { height: 100%; }
+/* body { background-color: #0a6ac4; } */
+
+@keyframes carMove {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-car {
+  animation: carMove 25s linear infinite;
+  white-space: nowrap;
+}
+
+/* Leaflet CSS */
+.leaflet-container {
+  width: 100%;
+  height: 400px; /* adjust as needed */
+  border-radius: 10px;
+}
+
