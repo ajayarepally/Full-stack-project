@@ -180,7 +180,7 @@ function Home() {
           </p>
         </div>
         <a
-          href="tel:+916302016824"
+          href="tel:+919676937906"
           className="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold px-5 py-2 rounded-lg transition transform hover:scale-105"
         >
           📞 Call Now
