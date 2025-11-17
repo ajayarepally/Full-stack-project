@@ -59,7 +59,7 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get("https://full-stack-project-7-s9hh.onrender.com/api/vehicles/")
+      .get("https://maa-rentals.onrender.com/api/vehicles/")
       .then((res) => {
         setVehicles(res.data);
         setCars(res.data.filter((v) => v.vehicle_type.toLowerCase() === "car"));
