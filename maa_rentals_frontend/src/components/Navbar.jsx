@@ -41,6 +41,44 @@ export default function Navbar() {
           <span className="hidden sm:inline text-black">MAA Rentals</span>
         </Link>
 
+        {/* Desktop Links */}
+        <div className="hidden sm:flex gap-4 items-center text-gray-700 text-sm sm:text-base">
+          <Link to="/vehicles" className="hover:text-indigo-600 transition-colors">
+            Search
+          </Link>
+          <Link1 smooth to="/#call-section" className="hover:text-indigo-600 transition-colors">
+            Contact Us
+          </Link1>
+          <Link1 smooth to="/#about" className="hover:text-indigo-600 transition-colors">
+            About Us
+          </Link1>
+          {token ? (
+            <>
+              <Link to="/profile" className="hover:text-indigo-600 transition-colors">
+                Bookings
+              </Link>
+              <button
+                onClick={logout}
+                className="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700 transition"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="hover:text-indigo-600 transition-colors">
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-orange-600 transition"
+              >
+                Register
+              </Link>
+            </>
+          )}
+        </div>
+
         {/* Mobile toggle button */}
         <div className="sm:hidden">
           <button
@@ -80,76 +118,73 @@ export default function Navbar() {
             )}
           </button>
         </div>
+      </div>
 
-        {/* Nav Links */}
-        <div
-          ref={menuRef}
-          style={{
-            maxHeight: isOpen ? `${menuHeight}px` : "0px",
-          }}
-          className="flex flex-col sm:flex-row sm:gap-4 items-center text-gray-700 text-sm sm:text-base absolute sm:static top-full left-0 w-full sm:w-auto bg-white sm:bg-transparent overflow-hidden transition-all duration-300"
+      {/* Mobile links with slide-down */}
+      <div
+        ref={menuRef}
+        style={{
+          maxHeight: isOpen ? `${menuHeight}px` : "0px",
+        }}
+        className="sm:hidden flex flex-col overflow-hidden transition-all duration-300 bg-white"
+      >
+        <Link
+          to="/vehicles"
+          className="hover:text-indigo-600 transition-colors py-2 px-4 border-b border-gray-200"
+          onClick={() => setIsOpen(false)}
         >
-          <Link
-            to="/vehicles"
-            className="hover:text-indigo-600 transition-colors py-2 sm:py-0"
-            onClick={() => setIsOpen(false)}
-          >
-            Search
-          </Link>
-
-          <Link1
-            smooth
-            to="/#call-section"
-            className="hover:text-indigo-600 transition-colors py-2 sm:py-0"
-            onClick={() => setIsOpen(false)}
-          >
-            Contact Us
-          </Link1>
-
-          <Link1
-            smooth
-            to="/#about"
-            className="hover:text-indigo-600 transition-colors py-2 sm:py-0"
-            onClick={() => setIsOpen(false)}
-          >
-            About Us
-          </Link1>
-
-          {token ? (
-            <>
-              <Link
-                to="/profile"
-                className="hover:text-indigo-600 transition-colors py-2 sm:py-0"
-                onClick={() => setIsOpen(false)}
-              >
-                Bookings
-              </Link>
-              <button
-                onClick={logout}
-                className="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700 transition mt-2 sm:mt-0"
-              >
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link
-                to="/login"
-                className="hover:text-indigo-600 transition-colors py-2 sm:py-0"
-                onClick={() => setIsOpen(false)}
-              >
-                Login
-              </Link>
-              <Link
-                to="/register"
-                className="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-orange-600 transition mt-2 sm:mt-0"
-                onClick={() => setIsOpen(false)}
-              >
-                Register
-              </Link>
-            </>
-          )}
-        </div>
+          Search
+        </Link>
+        <Link1
+          smooth
+          to="/#call-section"
+          className="hover:text-indigo-600 transition-colors py-2 px-4 border-b border-gray-200"
+          onClick={() => setIsOpen(false)}
+        >
+          Contact Us
+        </Link1>
+        <Link1
+          smooth
+          to="/#about"
+          className="hover:text-indigo-600 transition-colors py-2 px-4 border-b border-gray-200"
+          onClick={() => setIsOpen(false)}
+        >
+          About Us
+        </Link1>
+        {token ? (
+          <>
+            <Link
+              to="/profile"
+              className="hover:text-indigo-600 transition-colors py-2 px-4 border-b border-gray-200"
+              onClick={() => setIsOpen(false)}
+            >
+              Bookings
+            </Link>
+            <button
+              onClick={logout}
+              className="bg-indigo-600 text-white px-4 py-2 m-4 rounded hover:bg-indigo-700 transition"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link
+              to="/login"
+              className="hover:text-indigo-600 transition-colors py-2 px-4 border-b border-gray-200"
+              onClick={() => setIsOpen(false)}
+            >
+              Login
+            </Link>
+            <Link
+              to="/register"
+              className="bg-indigo-600 text-white px-4 py-2 m-4 rounded hover:bg-orange-600 transition"
+              onClick={() => setIsOpen(false)}
+            >
+              Register
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   );
