@@ -49,6 +49,14 @@ export default function Navbar() {
             Contact Us
           </Link1>
 
+          <Link1
+            smooth
+            to="/#about"
+            className="hover:text-indigo-600 transition-colors"
+          >
+            About Us
+          </Link1>
+
 
           {token ? (
             <>

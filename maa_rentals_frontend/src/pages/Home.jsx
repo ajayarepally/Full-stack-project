@@ -229,7 +229,7 @@ function Home() {
       </button>
 
       {/* About Us Section */}
-      <div className="bg-gray-900 text-gray-200 py-12 mt-10 rounded-t-3xl">
+      <div id="about" className="bg-gray-900 text-gray-200 py-12 mt-10 rounded-t-3xl">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold mb-4 text-cyan-400">About US</h2>
           <p className="text-gray-300 mb-6">
