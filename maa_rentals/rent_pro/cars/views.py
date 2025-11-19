@@ -57,34 +57,10 @@ class VehicleViewSet(viewsets.ModelViewSet):
     
 
 def is_vehicle_available(vehicle, start_date, end_date):
-    # Returns True if no overlapping bookings exist
     overlapping = Booking.objects.filter(
         vehicle=vehicle,
         start_date__lte=end_date,
         end_date__gte=start_date
     ).exists()
     return not overlapping
-
-
-# @api_view(['GET'])
-# def check_vehicle_availability(request, pk):
-#     try:
-#         vehicle = Vehicle.objects.get(pk=pk)
-#     except Vehicle.DoesNotExist:
-#         return Response({'error': 'Vehicle not found'}, status=404)
-
-#     start_date_str = request.GET.get('start_date')
-#     end_date_str = request.GET.get('end_date')
-
-#     if not start_date_str or not end_date_str:
-#         return Response({'error': 'Start and end dates are required'}, status=400)
-
-#     try:
-#         start_date = datetime.strptime(start_date_str, "%Y-%m-%d").date()
-#         end_date = datetime.strptime(end_date_str, "%Y-%m-%d").date()
-#     except ValueError:
-#         return Response({'error': 'Invalid date format'}, status=400)
-
-#     available = is_vehicle_available(vehicle, start_date, end_date)
-#     return Response({'available': available})
 

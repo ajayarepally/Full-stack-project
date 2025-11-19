@@ -8,7 +8,6 @@ import L from "leaflet";
 import { motion } from "framer-motion";
 
 
-// Fix default icon issue in React Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
