@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://rental-bikes.onrender.com/api/',
+  baseURL: 'https://vehicle-rent-gn1d.onrender.com/api/',
 });
 
 // Add token to each request automatically

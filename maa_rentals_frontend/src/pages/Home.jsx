@@ -342,7 +342,7 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get("https://rental-bikes.onrender.com/api/vehicles/")
+      .get("https://vehicle-rent-gn1d.onrender.com/api/vehicles/")
       .then((res) => {
         setVehicles(res.data);
         setCars(res.data.filter((v) => v.vehicle_type.toLowerCase() === "car"));
