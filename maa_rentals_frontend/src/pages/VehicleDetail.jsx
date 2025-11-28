@@ -227,6 +227,37 @@ export default function VehicleDetail() {
   }, [vehicle, startDate, endDate]);
 
   // Booking handler
+  // const handleBooking = async () => {
+  //   if (!token) {
+  //     alert("Please login to continue");
+  //     navigate("/login");
+  //     return;
+  //   }
+
+  //   if (!startDate || !endDate) {
+  //     setBookingMsg("Please select valid dates");
+  //     return;
+  //   }
+
+  //   try {
+  //     const days = dayjs(endDate).diff(dayjs(startDate), "day") + 1;
+
+  //     await api.post("/bookings/", {
+  //       vehicle: vehicle.id,
+  //       start_date: startDate,
+  //       end_date: endDate,
+  //     });
+
+  //     setBookingMsg(
+  //       `Booking Successful! Total ₹${days * vehicle.price_per_day}`
+  //     );
+  //     setIsAvailable(false);
+  //   } catch (err) {
+  //     setBookingMsg("Booking failed. Vehicle unavailable.");
+  //   }
+  // };
+
+  // Booking handler
   const handleBooking = async () => {
     if (!token) {
       alert("Please login to continue");
@@ -242,11 +273,19 @@ export default function VehicleDetail() {
     try {
       const days = dayjs(endDate).diff(dayjs(startDate), "day") + 1;
 
-      await api.post("/bookings/", {
-        vehicle: vehicle.id,
-        start_date: startDate,
-        end_date: endDate,
-      });
+      await api.post(
+        "/bookings/",
+        {
+          vehicle: vehicle.id,
+          start_date: startDate,
+          end_date: endDate,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       setBookingMsg(
         `Booking Successful! Total ₹${days * vehicle.price_per_day}`
@@ -256,6 +295,7 @@ export default function VehicleDetail() {
       setBookingMsg("Booking failed. Vehicle unavailable.");
     }
   };
+
 
   if (!vehicle)
     return <p className="text-center mt-10 text-lg">Loading vehicle...</p>;
@@ -274,7 +314,7 @@ export default function VehicleDetail() {
 
       {/* Card Layout */}
       <div className="bg-white shadow-xl rounded-2xl border border-gray-200 p-6 flex flex-col md:flex-row gap-8">
-        
+
         {/* LEFT - Image */}
         <div className="md:w-1/2">
           <img
@@ -286,7 +326,7 @@ export default function VehicleDetail() {
 
         {/* RIGHT - Info */}
         <div className="md:w-1/2 space-y-4">
-          
+
           {/* Description */}
           <p className="text-gray-700 leading-relaxed">{vehicle.description}</p>
 
@@ -331,19 +371,18 @@ export default function VehicleDetail() {
           <p className="font-bold mt-2">
             Status:{" "}
             <span
-              className={`px-2 py-1 rounded text-white ${
-                loading
+              className={`px-2 py-1 rounded text-white ${loading
                   ? "bg-gray-500"
                   : isAvailable
-                  ? "bg-green-600"
-                  : "bg-red-600"
-              }`}
+                    ? "bg-green-600"
+                    : "bg-red-600"
+                }`}
             >
               {loading
                 ? "Checking..."
                 : isAvailable
-                ? "Available"
-                : "Not Available"}
+                  ? "Available"
+                  : "Not Available"}
             </span>
           </p>
 
@@ -360,11 +399,10 @@ export default function VehicleDetail() {
           <button
             onClick={handleBooking}
             disabled={!isAvailable}
-            className={`w-full py-3 text-lg font-semibold rounded-xl shadow-md transition ${
-              isAvailable
+            className={`w-full py-3 text-lg font-semibold rounded-xl shadow-md transition ${isAvailable
                 ? "bg-indigo-600 hover:bg-indigo-700 text-white"
                 : "bg-gray-400 text-black cursor-not-allowed"
-            }`}
+              }`}
           >
             Book Now
           </button>
